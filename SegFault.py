@@ -1,19 +1,17 @@
-import requests
+from serpapi import GoogleSearch
 
 params = {
-  'access_key': '559b86f4cd4e486721b273c965912bdf'
+  "engine": "google_flights",
+  "departure_id": "PEK",
+  "arrival_id": "AUS",
+  "outbound_date": "2024-02-11",
+  "return_date": "2024-02-17",
+  "currency": "USD",
+  "hl": "en",
+  "api_key": "cdfd14d194e22fc0da54f1698c9ef3bdceda237acd7460de22455ed562bd6cee"
 }
 
-api_result = requests.get('https://api.aviationstack.com/v1/flights', params)
+search = GoogleSearch(params)
+results = search.get_dict()
 
-api_response = api_result.json()
-
-for flight in api_response['results']:
-    if (flight['live']['is_ground'] is False):
-        print(u'%s flight %s from %s (%s) to %s (%s) is in the air.' % (
-            flight['airline']['name'],
-            flight['flight']['iata'],
-            flight['departure']['airport'],
-            flight['departure']['iata'],
-            flight['arrival']['airport'],
-            flight['arrival']['iata']))
+print(results)
