@@ -1,7 +1,7 @@
 import requests
 
 params = {
-  'access_key': 'YOUR_ACCESS_KEY'
+  'access_key': '559b86f4cd4e486721b273c965912bdf'
 }
 
 api_result = requests.get('https://api.aviationstack.com/v1/flights', params)
